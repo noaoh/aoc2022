@@ -16,7 +16,7 @@ fn part1(s: String) -> u64 {
             set.insert(g);
         } 
         if match_found {
-            return (i +  4) as u64;
+            return (i + 4) as u64;
         }
     }
     unreachable!();
@@ -37,7 +37,7 @@ fn part2(s: String) -> u64 {
             set.insert(g);
         } 
         if match_found {
-            return (i +  14) as u64;
+            return (i + 14) as u64;
         }
     }
     unreachable!();
