@@ -80,15 +80,54 @@ impl Matrix {
         let (row_idx, col_idx) = i;
         if row_idx >= self.col_length || col_idx >= self.row_length {
             return None;
+        }
+        else if row_idx == 0 || row_idx == (self.row_length - 1) || col_idx == 0 || col_idx == (self.col_length - 1) {
+            return Some(0 as u64);
         } else {
-            println!("({}, {})", row_idx, col_idx);
             let val = self.data[row_idx][col_idx];
-            let l_score = self.left((row_idx, col_idx)).iter().take_while(|x| x <= &&val).count() as u64;
-            let r_score = self.right((row_idx, col_idx)).iter().take_while(|x| x <= &&val).count() as u64;
-            let t_score = self.top((row_idx, col_idx)).iter().take_while(|x| x <= &&val).count() as u64;
-            let b_score = self.bottom((row_idx, col_idx)).iter().take_while(|x| x <= &&val).count() as u64;
+            let mut l_vec = self.left((row_idx, col_idx));
+            l_vec.reverse();
+            let r_vec = self.right((row_idx, col_idx));
+            let mut t_vec = self.top((row_idx, col_idx));
+            t_vec.reverse();
+            let b_vec: Vec<u64> = self.bottom((row_idx, col_idx));
+            let mut l_score = 0;
+            let mut r_score = 0;
+            let mut t_score = 0;
+            let mut b_score = 0;
+            for l in l_vec {
+                if l >= val {
+                    l_score += 1;
+                    break;
+                }
+                l_score += 1;
+            }
+
+            for r in r_vec {
+                if r >= val {
+                    r_score += 1;
+                    break;
+                }
+                r_score += 1;
+            }
+
+            for b in b_vec {
+                if b >= val {
+                    b_score += 1;
+                    break;
+                }
+                b_score += 1;
+            }
+
+            for t in t_vec {
+                if t >= val {
+                    t_score += 1;
+                    break;
+                }
+                t_score += 1;
+            }
+
             let score: u64 = l_score * r_score * t_score * b_score;
-            println!("score: {}", score);
             return Some(score);
         }
     }
@@ -148,7 +187,7 @@ fn part2(s: &String) -> u64 {
 }
 
 fn main() -> () {
-    let s = String::from(include_str!("../inputs/08_ex.txt"));
+    let s = String::from(include_str!("../inputs/08_in.txt"));
     println!("{}", part1(&s));
     println!("{}", part2(&s));
 }
