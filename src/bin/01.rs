@@ -1,4 +1,5 @@
 use std::fs;
+use std::path::Path;
 
 fn parse_input(s: String) -> Vec<Vec<u64>> {
     let mut output: Vec<Vec<u64>> = Vec::new();
@@ -37,7 +38,7 @@ fn part2(elves_calories: Vec<Vec<u64>>) -> u64 {
 }
 
 fn main() -> () {
-    let s: String = fs::read_to_string("in.txt").expect("failed to read file");
+    let s: String = String::from(include_str!("../inputs/01_in.txt"));
     let vec1 = parse_input(s);
     let vec2 = vec1.clone(); 
     println!("{}", part1(vec1));

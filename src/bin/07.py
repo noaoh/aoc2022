@@ -1,5 +1,6 @@
 import math
 import functools
+import os
 
 
 class File:
@@ -100,7 +101,7 @@ def part2(root):
 
 
 def main():
-    with open("in.txt") as f:
+    with open(os.path.join("..", "inputs", "07_in.txt")) as f:
         s = f.read()
         root = parse_ls_tree(s)
         print(part1(root))

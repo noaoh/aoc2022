@@ -86,7 +86,7 @@ fn score(o: Vec<(String, String)>) -> u64 {
 }
 
 fn main() -> () {
-    let s: String = fs::read_to_string("in.txt").expect("failed to read file");
+    let s: String = String::from(include_str!("../inputs/02_in.txt"));
     let t = s.clone();
     let v1 = parse_part1_input(s);
     println!("{}", score(v1));

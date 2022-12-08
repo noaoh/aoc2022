@@ -69,7 +69,7 @@ fn part2(s: String) -> u64 {
 }
 
 fn main() -> () {
-    let s = fs::read_to_string("in.txt").expect("failed to read file");
+    let s = String::from(include_str!("../inputs/03_in.txt"));
     let t = s.clone();
     println!("{}", part1(s));
     println!("{}", part2(t));

@@ -14,5 +14,4 @@ Cargo.lock
 *.pdb
 
 # AOC specific stuff
-**/in.txt
-**/ex
+src/inputs/*_in.txt
